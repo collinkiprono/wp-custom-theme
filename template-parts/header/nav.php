@@ -13,6 +13,7 @@ $header_menus = wp_get_nav_menu_items($header_menu_id);
 ?>
 
 <nav class="navbar navbar-expand-lg bg-light">
+
   <div class="container-fluid">
       <?php
     if(function_exists('the_custom_logo')){
@@ -77,4 +78,5 @@ $header_menus = wp_get_nav_menu_items($header_menu_id);
       </form>
     </div>
   </div>
+
 </nav>
