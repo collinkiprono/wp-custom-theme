@@ -12,7 +12,7 @@
              <?php esc_html_e( 'No posts found', 'aquila' ) ?>
          </h1>
      </header>
-     <div class="pagec-content">
+     <div class="page-content">
          <?php
         if(is_home() && current_user_can('publish_posts')){
             ?>
