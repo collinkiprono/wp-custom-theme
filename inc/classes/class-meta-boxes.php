@@ -5,7 +5,7 @@
  * 
  */
 
- namespace AQUILA_THEME\Inc;
+namespace AQUILA_THEME\Inc;
 
 use AQUILA_THEME\Inc\Traits\Singleton;
 
@@ -20,16 +20,18 @@ use AQUILA_THEME\Inc\Traits\Singleton;
     protected function setup_hooks(){
         //Actions & Filters
         add_action('add_meta_boxes',[$this, 'add_custom_meta_box']);
+		add_action('save_post', [$this, 'save_post_meta_data']);
     }
     public function add_custom_meta_box() {
 		$screens = [ 'post' ];
 		foreach ( $screens as $screen ) {
 			add_meta_box(
-				'hide-page-title',           // Unique ID
-				__( 'Hide page title', 'aquila' ),  // Box title
-				[ $this, 'custom_meta_box_html' ],  // Content callback, must be of type callable
-				$screen,                   // Post type
-				'side' // context
+				'hide-page-title',
+				__( 'Hide page title', 'aquila' ),
+				[ $this, 'custom_meta_box_html' ],
+				$screen,
+				'side'
+				
 			);
 		}
 	}
@@ -48,6 +50,16 @@ public function custom_meta_box_html($post){
 			</option>
 		</select>
 		<?php
+}
+public function save_post_meta_data($post_id){
+	if(array_key_exists('aquila_hide_title_field', $_POST)){
+		update_post_meta(
+			$post_id,
+			'_hide_page_title',
+			$_POST['aquila_hide_title_field']
+		);
+	}
+
 }
 
  }
